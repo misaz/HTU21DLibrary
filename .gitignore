@@ -1,0 +1,22 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/examples/AVR_01_Basic/.vs
+/examples/AVR_01_Basic/AVR_01_Basic/Debug
+/examples/AVR_02_Resolution/.vs
+/examples/AVR_02_Resolution/AVR_02_Resolution/Debug
+/examples/AVR_03_NonBlockigMode/.vs
+/examples/AVR_03_NonBlockigMode/AVR_03_NonBlockigMode/Debug
+/examples/AVR_04_OnChipHeater/.vs
+/examples/AVR_04_OnChipHeater/AVR_04_OnChipHeater/Debug
+/examples/AVR_05_SoftReset/.vs
+/examples/AVR_05_SoftReset/AVR_05_SoftReset/Debug
+/examples/AVR_06_EndOfBatter/.vs
+/examples/AVR_06_EndOfBatter/AVR_06_EndOfBatter/Debug
+/examples/STM32F4_01_Basic/Debug
+/examples/STM32F4_02_Resolution/Debug
+/examples/STM32F4_03_NonBlockigMode/Debug
+/examples/STM32F4_04_OnChipHeater/Debug
+/examples/STM32F4_05_SoftReset/Debug
+/examples/STM32F4_06_EndOfBatter/Debug
