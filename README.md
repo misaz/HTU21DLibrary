@@ -1,6 +1,6 @@
 # HTU21D Library
 
-This project contains library for HTU21D sensor. Library is multiplatform and independent on any other library.
+This project contains library for HTU21D sensor. Library is multiplatform and independent on any other library. Supported platforms are AVR and STM32F4 but it could be target to any other platform using implementation of 7 simple functions making library able to access I2C and time delay on your platform.
 
 ## Features
 
@@ -20,7 +20,7 @@ When used It consists of 4 files. Files `HTU21D.c` and `HTU21D.h` contains libra
 
 Examples are implemented for all platform in example folder. Examples on this page are platform neutral.
 
-### 1 - Read Temperature and Humidity
+### Example 1 - Read Temperature and Humidity
 
 Following example is example of very simple (and the most common) usage of library. Library is initialized using `HTU21D_Init()` function and measurements are triggered using `HTU21D_ReadTemperature()` and `HTU21D_ReadHumidity` functions. Functions expect pointer to float where the measured value will be stored. Most functions in library returns integers containing status information. 0 is OK and non-zero value identifies error. Error codes are defined in `HTU21D.h` file in constants with names starting with `HTU21D_E_`.
 
@@ -49,7 +49,7 @@ int main(void) {
 }
 ```
 
-### 2 - Specifiy resolution
+### Example 2 - Specifiy resolution
 
 Following example shows usage of `HTU21D_GetResolution` and `HTU21D_SetResolution` functions. Better resolution decrease performance. Sensor support resolutions defined in constants `HTU21D_REG_RESOLUTION_T11_H11`, `HTU21D_REG_RESOLUTION_T12_H08`, `HTU21D_REG_RESOLUTION_T13_H10`, `HTU21D_REG_RESOLUTION_T14_H12`. Constant name says how much bits are used for temperature and humidity. For example mode `HTU21D_REG_RESOLUTION_T13_H10` says that temperature will be measured as 13 bit number and humidity as 10 bit number.
 
@@ -94,7 +94,7 @@ int main(void) {
 }
 ```
 
-### 3 - Measurement in bus non-blocking mode
+### Example 3 - Measurement in bus non-blocking mode
 
 Sensor supports measuring in 2 modes. One is blocking which works in way that when controllers triggers measurement (using `HTU21D_ReadTemperature` or `HTU21D_ReadTemperatureBlocking` functions, both do the same) it holds I2C bus low so master must wait until bus is released, then it can read measured value from sensor. Other mode is that the master send command to tirgger measure and device imediately release bus. Then master must attemp to read measured data from sensor. If it do that early when value is not measured yet sensor will deny that request and master must try it again later. Benefit of that mode is that in time when sensor is measuring value bus could be used to communicate with other node on the bus. This mode is used by `HTU21D_ReadTemperatureNonBlocking` function but this blocks your program between attemps to read dat from sensor. If you want to use it fully you need to call begin (`HTU21D_ReadTemperatureNonBlockingBegin`) function to execute non-blocking request and then call poll (`HTU21D_ReadTemperatureNonBlockingPoll`) function until it succeds. Between begin and polls you can communicate with other nodes on the bus. Pointer to float where value will be sotred is passed into poll (not begin) method and it is filled only in case of poll success (when it return 0). It is reccommended to distinguis between NACK and BUS error. NACK error is normal in this mode and means that device is not ready to provide data while BUS error si any other error. In case of BUS error BUS is reseted and transaction cannot be considered as valid anymore. Usage of described non-blocking mode is shown on the following example.
 
@@ -142,7 +142,7 @@ int main(void) {
 }
 ```
 
-### 4 - On-chip heater
+### Example 4 - On-chip heater
 
 Sensor contains heater which could be enabled and used for test that sensor is working. Heater increase temperature about approximaly 0.5 - 1.5 °C. Following example measure temperature before enabling heater, after enabling and shows how much heater increased temperature.
 
@@ -189,7 +189,7 @@ int main(void) {
 }
 ```
 
-### 5 - Soft reset
+### Example 5 - Soft reset
 
 Sensor could be reseted using software. Library provides this feature using `HTU21D_SoftReset` function. It is reccomended to use this function in time when error on bus occure. Because on some bus error sensore may becaome unresponsive it is recommended to call this function in loop while it returns error. When it succeeds sensor is avalaible and ready again.
 
@@ -207,7 +207,7 @@ int main(void) {
 }
 ```
 
-### 6 - End of battery
+### Example 6 - End of battery
 
 Sensor supports providing informations if voltage going low. Feature is named "End of battery". This flag is updated after every measurement and is active when voltage drops under aproximately 2.25 V. It could be read using `HTU21D_GetEndOfBattery` function.
 
