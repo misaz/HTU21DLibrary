@@ -1,6 +1,6 @@
 # HTU21D Library
 
-This project contains library for HTU21D sensor. Library is multiplatform and independent on any other library. Supported platforms are AVR and STM32F4 but it could be target to any other platform using implementation of 7 simple functions making library able to access I2C and time delay on your platform.
+This project contains library for HTU21D sensor. Library is multiplatform and independent on any other library. Supported platforms are AVR, STM32F4, Cypress PSoC 6 and Winner Micro W600 (Wiznet WizFi360) but it could be target to any other platform using implementation of 7 simple functions making library able to access I2C and time delay on your platform.
 
 ## Features
 
